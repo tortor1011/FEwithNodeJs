@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>kkustockphoto</title>
+    <style>
+        .image-list img { max-width: 100px; margin: 5px; }
+        select[multiple] { height: 150px; }
+        .search-form, .upload-form { margin: 20px 0; }
+        .image-list { display: flex; flex-wrap: wrap; gap: 10px; }
+        .image-list div { border: 1px solid #ccc; padding: 10px; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <!-- ฟอร์มค้นหา -->
+    <form id="searchForm" class="search-form">
+        <select name="category">
+            <option value="">-- เลือกหมวดหมู่ --</option>
+            <option value="ภาพวิวและพื้นที่ส่วนกลาง">ภาพวิวและพื้นที่ส่วนกลาง</option>
+            <option value="ภาพสิ่งอำนวยความสะดวก และการใช้ชีวิตใน มข.">ภาพสิ่งอำนวยความสะดวก และการใช้ชีวิตใน มข.</option>
+            <option value="ภาพการเรียนการสอน">ภาพการเรียนการสอน</option>
+            <option value="ภาพการวิจัยและนวัตกรรม">ภาพการวิจัยและนวัตกรรม</option>
+            <option value="ภาพเทรนด์ ภาพ ดิจิทัล">ภาพเทรนด์ ภาพ ดิจิทัล</option>
+            <option value="ภาพผู้บริหาร มข.">ภาพผู้บริหาร มข.</option>
+            <option value="ภาพศิลปวัฒนธรรมและศิลปสร้างสรรค์">ภาพศิลปวัฒนธรรมและศิลปสร้างสรรค์</option>
+            <option value="ภาพกิจกรรมลงชุมชน (CSV)">ภาพกิจกรรมลงชุมชน (CSV)</option>
+            <option value="ภาพนานาชาติ">ภาพนานาชาติ</option>
+            <option value="ภาพปริญญาบัตร และรัฐพิธีสำคัญ">ภาพปริญญาบัตร และรัฐพิธีสำคัญ</option>
+            <option value="ภาพมุมสูง ต่างๆ">ภาพมุมสูง ต่างๆ</option>
+            <option value="ภาพวิทยาศาสตร์-และวิทยาศาสตร์สุขภาพ">ภาพวิทยาศาสตร์-และวิทยาศาสตร์สุขภาพ</option>
+            <option value="โลโก้ 60 ปี มข. จากศูนย์ศิลปวัฒนธรรม มข.">โลโก้ 60 ปี มข. จากศูนย์ศิลปวัฒนธรรม มข.</option>
+            <option value="กีฬา">กีฬา</option>
+            <option value="คอนเสิร์ต-การแสดง">คอนเสิร์ต-การแสดง</option>
+        </select>
+        <input type="text" name="keyword" placeholder="ค้นหา (เช่น คณะ, สถานที่)">
+        <button type="submit">ค้นหา</button>
+    </form>
+
+    <!-- ฟอร์มอัปโหลด -->
+    <form id="uploadForm" class="upload-form">
+        <input type="text" name="title" placeholder="Title" required><br>
+        <input type="file" name="thumbnail" accept="image/*" required><br>
+        <input type="file" name="fullsize" accept="image/*" required><br>
+        <select name="category" multiple required>
+            <option value="ภาพวิวและพื้นที่ส่วนกลาง">ภาพวิวและพื้นที่ส่วนกลาง</option>
+            <option value="ภาพสิ่งอำนวยความสะดวก และการใช้ชีวิตใน มข.">ภาพสิ่งอำนวยความสะดวก และการใช้ชีวิตใน มข.</option>
+            <option value="ภาพการเรียนการสอน">ภาพการเรียนการสอน</option>
+            <option value="ภาพการวิจัยและนวัตกรรม">ภาพการวิจัยและนวัตกรรม</option>
+            <option value="ภาพเทรนด์ ภาพ ดิจิทัล">ภาพเทรนด์ ภาพ ดิจิทัล</option>
+            <option value="ภาพผู้บริหาร มข.">ภาพผู้บริหาร มข.</option>
+            <option value="ภาพศิลปวัฒนธรรมและศิลปสร้างสรรค์">ภาพศิลปวัฒนธรรมและศิลปสร้างสรรค์</option>
+            <option value="ภาพกิจกรรมลงชุมชน (CSV)">ภาพกิจกรรมลงชุมชน (CSV)</option>
+            <option value="ภาพนานาชาติ">ภาพนานาชาติ</option>
+            <option value="ภาพปริญญาบัตร และรัฐพิธีสำคัญ">ภาพปริญญาบัตร และรัฐพิธีสำคัญ</option>
+            <option value="ภาพมุมสูง ต่างๆ">ภาพมุมสูง ต่างๆ</option>
+            <option value="ภาพวิทยาศาสตร์-และวิทยาศาสตร์สุขภาพ">ภาพวิทยาศาสตร์-และวิทยาศาสตร์สุขภาพ</option>
+            <option value="โลโก้ 60 ปี มข. จากศูนย์ศิลปวัฒนธรรม มข.">โลโก้ 60 ปี มข. จากศูนย์ศิลปวัฒนธรรม มข.</option>
+            <option value="กีฬา">กีฬา</option>
+            <option value="คอนเสิร์ต-การแสดง">คอนเสิร์ต-การแสดง</option>
+        </select><br>
+        <input type="text" name="photographer" placeholder="Photographer" required><br>
+        <input type="text" name="tags" placeholder="Tags (e.g., kku, khonkaen)"><br>
+        <button type="submit">Upload</button>
+    </form>
+
+    <div class="image-list"></div>
+
+    <script>
+        function arrayBufferToBase64(buffer) {
+            let binary = '';
+            const bytes = new Uint8Array(buffer);
+            for (let i = 0; i < bytes.byteLength; i++) {
+                binary += String.fromCharCode(bytes[i]);
+            }
+            return btoa(binary);
+        }
+
+        function displayImages(images) {
+            const list = document.querySelector('.image-list');
+            list.innerHTML = images.map(img => {
+                let thumbnailSrc = 'https://placehold.co/100';
+                if (img.thumbnail && img.thumbnail.data && img.thumbnail.contentType) {
+                    try {
+                        const buffer = new Uint8Array(img.thumbnail.data.data);
+                        thumbnailSrc = `data:${img.thumbnail.contentType};base64,${arrayBufferToBase64(buffer)}`;
+                    } catch (e) {
+                        console.error('Error converting thumbnail:', e, img.thumbnail);
+                    }
+                } else {
+                    console.warn('Missing thumbnail data:', img._id);
+                }
+                return `
+                    <div>
+                        <img src="${thumbnailSrc}" alt="${img.title}">
+                        <p>${img.title} | By: ${img.photographer} | Tags: ${img.tags || 'None'} | Views: ${img.views} | Downloads: ${img.downloads}</p>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function fetchImages(category = '', keyword = '') {
+            const url = new URL('http://localhost:3000/search');
+            if (category) url.searchParams.append('category', category);
+            if (keyword) url.searchParams.append('keyword', keyword);
+
+            fetch(url)
+                .then(res => {
+                    if (!res.ok) {
+                        return res.text().then(text => { throw new Error(`Fetch failed: ${text}`); });
+                    }
+                    return res.json();
+                })
+                .then(images => displayImages(images))
+                .catch(err => console.error(err));
+        }
+
+        // ฟอร์มค้นหา
+        document.getElementById('searchForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const category = this.category.value;
+            const keyword = this.keyword.value;
+            fetchImages(category, keyword);
+        });
+
+        // ฟอร์มอัปโหลด
+        document.getElementById('uploadForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            const selectedCategories = Array.from(this.category.selectedOptions).map(opt => opt.value);
+            formData.set('category', selectedCategories.join(','));
+
+            fetch('http://localhost:3000/upload/image', {
+                method: 'POST',
+                body: formData
+            })
+            .then(res => {
+                if (!res.ok) {
+                    return res.text().then(text => { throw new Error(`Server error: ${text}`); });
+                }
+                return res.json();
+            })
+            .then(data => {
+                alert('Uploaded!');
+                this.reset();
+                fetchImages(); // รีเฟรชรายการรูปภาพหลังอัปโหลด
+            })
+            .catch(err => console.error('Error:', err.message));
+        });
+
+        // โหลดรูปภาพทั้งหมดเมื่อหน้าเว็บโหลด
+        fetchImages();
+    </script>
+</body>
+</html>
